@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:text="${first_num}"></div>
+<select th:field="*{operation}">
+    <option th:value="addition" th:text="'+'"></option>
+    <option th:value="subtraction" th:text="'-'"></option>
+    <option th:value="multiplication" th:text="'*'"></option>
+    <option th:value="divide" th:text="'/'"></option>
+</select>
+<p th:text="${second_num}">
+<p th:text="${result}">
+</body>
+</html>
+

@@ -7,14 +7,17 @@
 <body>
 <form th:method="patch" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
     <label for="name">Name</label>
-    <input th:field="*{name}" type="text" id="name">
-    <br>
+    <input th:field="*{name}" type="text" id="name"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>
+    <br/>
     <label for="surname">Surname</label>
-    <input th:field="*{surname}" type="text" id="surname">
-    <br>
+    <input th:field="*{surname}" type="text" id="surname"/>
+    <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"/>
+    <br/>
     <label for="email">Email</label>
-    <input th:field="*{email}" type="text" id="email">
-    <br>
+    <input th:field="*{email}" type="text" id="email"/>
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/>
+    <br/>
 
     <input type="submit" value="Edit"/>
 </form>

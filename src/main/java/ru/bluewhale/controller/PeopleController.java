@@ -2,9 +2,12 @@ package ru.bluewhale.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.bluewhale.dao.PersonDAO;
 import ru.bluewhale.models.Person;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/people")
@@ -36,7 +39,14 @@ public class PeopleController {
     }
 
     @PostMapping()
-    public String createPerson(@ModelAttribute("person") Person person) {
+    public String createPerson(
+            @ModelAttribute("person")
+            @Valid Person person,
+            BindingResult bindingResult) {
+        System.out.println("bindingResult " + bindingResult.hasErrors());
+        if (bindingResult.hasErrors()) {
+            return "people/create";
+        }
         personDAO.save(person);
 
         return "redirect:/people";
@@ -49,8 +59,16 @@ public class PeopleController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id) {
+    public String update(
+            @ModelAttribute("person")
+            @Valid Person person,
+            @PathVariable("id") int id,
+            BindingResult bindingResult) {
         System.out.println("update with patch");
+        if (bindingResult.hasErrors()) {
+            return "people/edit";
+        }
+
         personDAO.update(id, person);
         return "redirect:/people/{id}";
     }

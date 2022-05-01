@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.bluewhale</groupId>
-    <artifactId>untitled3</artifactId>
+    <artifactId>spring_crud</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>untitled3 Maven Webapp</name>
+    <name>Spring Crud Maven Webapp</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -93,7 +93,7 @@
     </dependencies>
 
     <build>
-        <finalName>untitled3</finalName>
+        <finalName>spring_crud</finalName>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <plugin>

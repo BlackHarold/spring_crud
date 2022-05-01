@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.bluewhale.dao.PersonDAO;
-import ru.bluewhale.models.Person;
+import ru.bluewhale.entity.Person;
 
 import javax.validation.Valid;
 
@@ -21,14 +21,14 @@ public class PeopleController {
 
     @GetMapping
     public String index(Model model) {
-        System.out.println("index page: " + personDAO.index());
         model.addAttribute("people", personDAO.index());
         return "people/index";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("person", personDAO.show(id));
+        Person person = personDAO.show(id);
+        model.addAttribute("person", person);
         return "people/show";
     }
 
@@ -43,10 +43,10 @@ public class PeopleController {
             @ModelAttribute("person")
             @Valid Person person,
             BindingResult bindingResult) {
-        System.out.println("bindingResult " + bindingResult.hasErrors());
         if (bindingResult.hasErrors()) {
             return "people/create";
         }
+
         personDAO.save(person);
 
         return "redirect:/people";
@@ -64,7 +64,6 @@ public class PeopleController {
             @Valid Person person,
             @PathVariable("id") int id,
             BindingResult bindingResult) {
-        System.out.println("update with patch");
         if (bindingResult.hasErrors()) {
             return "people/edit";
         }
@@ -80,6 +79,7 @@ public class PeopleController {
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
+        System.out.println("delete person id=" + id);
         personDAO.delete(id);
         return "redirect:/people";
     }

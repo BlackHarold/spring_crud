@@ -6,8 +6,8 @@
 </head>
 <body>
 <p th:text="${person.getId()}">ID</p>
-<p th:text="${person.getName()}">NAME</p>
-<p th:text="${person.getSurname()}">SURNAME</p>
+<p th:text="${person.getFirstName()}">NAME</p>
+<p th:text="${person.getLastName()}">SURNAME</p>
 <p th:text="${person.getEmail()}">EMAIL</p>
 
 <form th:method="get" th:action="@{/people/edit/{id}(id=${person.getId()})}" th:object="${person}">

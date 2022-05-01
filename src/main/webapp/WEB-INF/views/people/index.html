@@ -8,7 +8,7 @@
 
 <div th:each="person : ${people}">
     <a th:href="@{/people/{id}(id=${person.getId()})}"
-       th:text="${person.getId()} + ' ' + ${person.getName()}"/>
+       th:text="${person.getId()} + ' ' + ${person.getFirstName()} + ' ' + ${person.getLastName()}"/>
 </div>
 <form th:method="get" th:action="@{/people/create}">
     <input type="submit" value="Add">
